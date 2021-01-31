@@ -1,14 +1,73 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://textures/fighter.png" type="Texture" id=1]
 [ext_resource path="res://scripts/fighter.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 56 )
+[sub_resource type="Animation" id=1]
+resource_name = "attack_left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton/Hip:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton/Hip/Chest/LeftArm:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 135.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Hip/Chest/LeftArm/LeftForearm:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton/Hip/Chest/RightArm:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Skeleton/Hip/Chest/RightArm/RightForearm:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
-resource_name = "test"
-length = 5.0
+resource_name = "attack_right"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton/Hip/Chest/RightArm:rotation_degrees")
 tracks/0/interp = 1
@@ -16,10 +75,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 4, 5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -60.0, -60.0, 0.0 ]
+"values": [ 0.0, -135.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Skeleton/Hip/Chest/RightArm/RightForearm:rotation_degrees")
@@ -28,22 +87,171 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 1.5, 2, 2.5, 3, 3.5, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -90.0, -135.0, -45.0, -135.0, -45.0, -135.0, 0.0 ]
+"values": [ 0.0, -30.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Hip:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 45.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton/Hip/Chest/LeftArm:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Skeleton/Hip/Chest/LeftArm/LeftForearm:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "stand"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton/Hip:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton/Hip/Chest/RightArm:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Hip/Chest/RightArm/RightForearm:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton/Hip/Chest/LeftArm:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Skeleton/Hip/Chest/LeftArm/LeftForearm:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "attack_right"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "stand"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+auto_advance = true
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+auto_advance = true
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/attack_left/node = SubResource( 19 )
+states/attack_left/position = Vector2( 267, 169.38 )
+states/attack_right/node = SubResource( 14 )
+states/attack_right/position = Vector2( 701, 169.38 )
+states/stand/node = SubResource( 15 )
+states/stand/position = Vector2( 484, 169.38 )
+transitions = [ "attack_right", "stand", SubResource( 17 ), "attack_left", "stand", SubResource( 20 ), "stand", "attack_left", SubResource( 21 ), "stand", "attack_right", SubResource( 22 ) ]
+start_node = "stand"
+graph_offset = Vector2( 0, 46.38 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 20, 56 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 15, 20 )
 
 [node name="Fighter" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack_left = SubResource( 1 )
+anims/attack_right = SubResource( 2 )
+anims/stand = SubResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+root_motion_track = NodePath("Skeleton/Hip:rotation_degrees")
+parameters/playback = SubResource( 10 )
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -56 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "test"
-anims/test = SubResource( 2 )
+shape = SubResource( 11 )
 
 [node name="Bodyparts" type="Node2D" parent="."]
 position = Vector2( -19, -112 )
@@ -217,3 +425,17 @@ position = Vector2( 0, 22 )
 rotation = 1.5708
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 22 )
 default_length = 6.0
+
+[node name="HitLeft" type="Area2D" parent="."]
+position = Vector2( -35, -60 )
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="HitLeft"]
+shape = SubResource( 12 )
+
+[node name="HitRight" type="Area2D" parent="."]
+position = Vector2( 35, -60 )
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="HitRight"]
+shape = SubResource( 12 )

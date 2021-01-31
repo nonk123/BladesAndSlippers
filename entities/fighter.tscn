@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://textures/fighter.png" type="Texture" id=1]
 [ext_resource path="res://scripts/fighter.gd" type="Script" id=2]
+[ext_resource path="res://audio/walk.ogg" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack_left"
@@ -12,10 +13,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, -45.0 ]
+"values": [ -30.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Skeleton/Hip/Chest/LeftArm:rotation_degrees")
@@ -24,10 +25,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, 135.0 ]
+"values": [ 135.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Skeleton/Hip/Chest/LeftArm/LeftForearm:rotation_degrees")
@@ -36,10 +37,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, 30.0 ]
+"values": [ 30.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Skeleton/Hip/Chest/RightArm:rotation_degrees")
@@ -65,6 +66,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("HitLeft:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack_right"
@@ -75,10 +88,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, -135.0 ]
+"values": [ -135.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Skeleton/Hip/Chest/RightArm/RightForearm:rotation_degrees")
@@ -87,10 +100,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, -30.0 ]
+"values": [ -30.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Skeleton/Hip:rotation_degrees")
@@ -99,10 +112,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, 45.0 ]
+"values": [ 30.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Skeleton/Hip/Chest/LeftArm:rotation_degrees")
@@ -127,6 +140,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HitRight:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -191,47 +216,217 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Skeleton/Hip/LeftLeg:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Skeleton/Hip/LeftLeg/LeftCalf:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Skeleton/Hip/RightLeg:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Skeleton/Hip/RightLeg/RightCalf:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "attack_left"
+[sub_resource type="Animation" id=4]
+resource_name = "walk_left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton/Hip/LeftLeg:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton/Hip/LeftLeg/LeftCalf:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Hip/RightLeg:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -30.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton/Hip/RightLeg/RightCalf:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 30.0 ]
+}
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="Animation" id=5]
+resource_name = "walk_right"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton/Hip/LeftLeg:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 30.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton/Hip/LeftLeg/LeftCalf:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -30.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Hip/RightLeg:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton/Hip/RightLeg/RightCalf:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "attack_right"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "stand"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-auto_advance = true
-xfade_time = 0.5
+[sub_resource type="AnimationNodeBlendSpace1D" id=11]
+blend_point_0/node = SubResource( 8 )
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource( 9 )
+blend_point_1/pos = -1.0
+blend_point_2/node = SubResource( 10 )
+blend_point_2/pos = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-auto_advance = true
-xfade_time = 0.5
+[sub_resource type="AnimationNodeOneShot" id=7]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-xfade_time = 1.0
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "stand"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-xfade_time = 1.0
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "stand"
 
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/attack_left/node = SubResource( 19 )
-states/attack_left/position = Vector2( 267, 169.38 )
-states/attack_right/node = SubResource( 14 )
-states/attack_right/position = Vector2( 701, 169.38 )
-states/stand/node = SubResource( 15 )
-states/stand/position = Vector2( 484, 169.38 )
-transitions = [ "attack_right", "stand", SubResource( 17 ), "attack_left", "stand", SubResource( 20 ), "stand", "attack_left", SubResource( 21 ), "stand", "attack_right", SubResource( 22 ) ]
-start_node = "stand"
-graph_offset = Vector2( 0, 46.38 )
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "walk_right"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "walk_left"
 
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 20, 56 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=16]
+blend_point_0/node = SubResource( 13 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 14 )
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource( 15 )
+blend_point_2/pos = -1.0
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="AnimationNodeOneShot" id=20]
+
+[sub_resource type="AnimationNodeBlendTree" id=17]
+graph_offset = Vector2( -340.8, 10.2101 )
+nodes/attack/node = SubResource( 11 )
+nodes/attack/position = Vector2( 0, 140 )
+nodes/attack_shot/node = SubResource( 7 )
+nodes/attack_shot/position = Vector2( 220, 20 )
+nodes/output/position = Vector2( 640, 60 )
+nodes/stand/node = SubResource( 12 )
+nodes/stand/position = Vector2( 0, 20 )
+nodes/walk/node = SubResource( 16 )
+nodes/walk/position = Vector2( 220, 220 )
+nodes/walk_shot/node = SubResource( 20 )
+nodes/walk_shot/position = Vector2( 440, 60 )
+node_connections = [ "output", 0, "walk_shot", "attack_shot", 0, "stand", "attack_shot", 1, "attack", "walk_shot", 0, "attack_shot", "walk_shot", 1, "walk" ]
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 30, 56 )
+
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 15, 20 )
 
 [node name="Fighter" type="KinematicBody2D"]
@@ -241,17 +436,26 @@ script = ExtResource( 2 )
 anims/attack_left = SubResource( 1 )
 anims/attack_right = SubResource( 2 )
 anims/stand = SubResource( 3 )
+anims/walk_left = SubResource( 4 )
+anims/walk_right = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 18 )
+tree_root = SubResource( 17 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("Skeleton/Hip:rotation_degrees")
-parameters/playback = SubResource( 10 )
+parameters/attack/blend_position = 0.0
+parameters/attack_shot/active = false
+parameters/walk/blend_position = 0.0
+parameters/walk_shot/active = false
+
+[node name="Walking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+max_distance = 512.0
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -56 )
-shape = SubResource( 11 )
+shape = SubResource( 18 )
 
 [node name="Bodyparts" type="Node2D" parent="."]
 position = Vector2( -19, -112 )
@@ -367,7 +571,7 @@ rest = Transform2D( 1, 0, 0, 1, 0, -24 )
 [node name="Head" type="Bone2D" parent="Skeleton/Hip/Chest"]
 position = Vector2( 0, -16 )
 rotation = -1.5708
-rest = Transform2D( -4.37114e-08, -1, 1, -4.37114e-08, 0, -16 )
+rest = Transform2D( -3.61999e-06, -1, 1, -3.61999e-06, 0, -16 )
 default_length = 20.0
 
 [node name="LeftArm" type="Bone2D" parent="Skeleton/Hip/Chest"]
@@ -381,7 +585,7 @@ rest = Transform2D( 1, 0, 0, 1, 0, 24 )
 [node name="LeftHand" type="Bone2D" parent="Skeleton/Hip/Chest/LeftArm/LeftForearm"]
 position = Vector2( 0, 15 )
 rotation = 1.5708
-rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 15 )
+rest = Transform2D( -3.61999e-06, 1, -1, -3.61999e-06, 0, 15 )
 default_length = 5.0
 
 [node name="RightArm" type="Bone2D" parent="Skeleton/Hip/Chest"]
@@ -395,7 +599,7 @@ rest = Transform2D( 1, 0, 0, 1, 0, 24 )
 [node name="RightHand" type="Bone2D" parent="Skeleton/Hip/Chest/RightArm/RightForearm"]
 position = Vector2( 0, 15 )
 rotation = 1.5708
-rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 15 )
+rest = Transform2D( -3.61999e-06, 1, -1, -3.61999e-06, 0, 15 )
 default_length = 5.0
 
 [node name="LeftLeg" type="Bone2D" parent="Skeleton/Hip"]
@@ -409,7 +613,7 @@ rest = Transform2D( 1, 0, 0, 1, 0, 16 )
 [node name="LeftFoot" type="Bone2D" parent="Skeleton/Hip/LeftLeg/LeftCalf"]
 position = Vector2( 0, 22 )
 rotation = 1.5708
-rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 22 )
+rest = Transform2D( -3.61999e-06, 1, -1, -3.61999e-06, 0, 22 )
 default_length = 6.0
 
 [node name="RightLeg" type="Bone2D" parent="Skeleton/Hip"]
@@ -423,19 +627,19 @@ rest = Transform2D( 1, 0, 0, 1, 0, 16 )
 [node name="RightFoot" type="Bone2D" parent="Skeleton/Hip/RightLeg/RightCalf"]
 position = Vector2( 0, 22 )
 rotation = 1.5708
-rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 22 )
+rest = Transform2D( -3.61999e-06, 1, -1, -3.61999e-06, 0, 22 )
 default_length = 6.0
 
 [node name="HitLeft" type="Area2D" parent="."]
-position = Vector2( -35, -60 )
+position = Vector2( -45, -60 )
 monitoring = false
 
 [node name="Shape" type="CollisionShape2D" parent="HitLeft"]
-shape = SubResource( 12 )
+shape = SubResource( 19 )
 
 [node name="HitRight" type="Area2D" parent="."]
-position = Vector2( 35, -60 )
+position = Vector2( 45, -60 )
 monitoring = false
 
 [node name="Shape" type="CollisionShape2D" parent="HitRight"]
-shape = SubResource( 12 )
+shape = SubResource( 19 )

@@ -8,28 +8,36 @@ const PIXELS_PER_METER = 64.0
 const PATHFINDING_RANGE = PIXELS_PER_METER * 30.0
 
 # How far can we dash to attack.
-const ATTACK_RANGE = PIXELS_PER_METER * 5.0
+const ATTACK_RANGE = PIXELS_PER_METER * 3.0
 
 # We receive this big of a push when we start walking.
-const WALK_SPEED = PIXELS_PER_METER * 5.0
+const WALK_SPEED = PIXELS_PER_METER * 3.0
 
 # Horizontal velocity is multiplied by this much every frame.
 const FRICTION_COEFFICIENT = 0.967
 
 const GRAVITY = PIXELS_PER_METER * 9.8
 
-# How long you have to wait for after making a turn.
-const TURN_WAIT = 3.0
+# How much damage we deal if the attack connects.
+const BASE_ATTACK = 10.0
+
+# How long you have to wait for after doing a turn.
+const TURN_WAIT = 2.0
 
 # Body's current velocity in px/s.
 var velocity = Vector2.ZERO
+
+# If this drops to 0, we die.
+var health = 100.0
 
 # The fighter we are targeting.
 var enemy
 
 var turn_timer = TURN_WAIT
 
-onready var state_machine = $AnimationTree["parameters/playback"]
+onready var anim_tree = $AnimationTree
+
+onready var walking = $Walking
 
 onready var hit_left = $HitLeft
 
@@ -65,9 +73,6 @@ func do_turn(_delta):
 	if direction == 0.0:
 		return # not sure what to do here
 	
-	hit_left.monitoring = false
-	hit_right.monitoring = false
-	
 	if distance <= ATTACK_RANGE:
 		attack(direction)
 	else:
@@ -77,27 +82,30 @@ func do_turn(_delta):
 func attack(direction):
 	velocity.x = direction * ATTACK_RANGE
 	
-	if direction > 0.0:
-		state_machine.travel("attack_right")
-		hit_left.monitoring = false
-		hit_right.monitoring = true
-	else:
-		state_machine.travel("attack_left")
-		hit_right.monitoring = false
-		hit_left.monitoring = true
+	anim_tree["parameters/attack/blend_position"] = direction
+	anim_tree["parameters/attack_shot/active"] = true
 
 
 func walk(direction):
 	velocity.x = direction * WALK_SPEED
 	
-	# TODO: add walking animation.
+	anim_tree["parameters/walk/blend_position"] = direction
+	anim_tree["parameters/walk_shot/active"] = true
+	walking.play()
 
 
 func hit_a_guy(node):
 	if "velocity" in node:
 		hit_left.set_deferred("monitoring", false)
 		hit_right.set_deferred("monitoring", false)
-		print("hit ", node.name)
+		node.deal_damage(BASE_ATTACK)
+
+
+func deal_damage(how_much):
+	health -= how_much
+	
+	if health <= 0.01:
+		queue_free()
 
 
 func find_enemy():

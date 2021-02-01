@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://textures/fighter.png" type="Texture" id=1]
 [ext_resource path="res://scripts/fighter.gd" type="Script" id=2]
@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -30.0 ]
+"values": [ -15.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Skeleton/Hip/Chest/LeftArm:rotation_degrees")
@@ -67,13 +67,13 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("HitLeft:monitoring")
+tracks/5/path = NodePath("HitArea:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0.3, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -142,16 +142,67 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("HitRight:monitoring")
+tracks/5/path = NodePath("HitArea:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0.3, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton/Hip/LeftLeg:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton/Hip/LeftLeg/LeftCalf:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Hip/RightLeg:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton/Hip/RightLeg/RightCalf:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -265,7 +316,7 @@ tracks/8/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 resource_name = "walk_left"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton/Hip/LeftLeg:rotation_degrees")
@@ -277,7 +328,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 45.0 ]
+"values": [ 60.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Skeleton/Hip/LeftLeg/LeftCalf:rotation_degrees")
@@ -289,7 +340,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -45.0 ]
+"values": [ -60.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Skeleton/Hip/RightLeg:rotation_degrees")
@@ -316,7 +367,7 @@ tracks/3/keys = {
 "values": [ 30.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "walk_right"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton/Hip/LeftLeg:rotation_degrees")
@@ -352,7 +403,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -45.0 ]
+"values": [ -60.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Skeleton/Hip/RightLeg/RightCalf:rotation_degrees")
@@ -364,7 +415,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 45.0 ]
+"values": [ 60.0 ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -384,68 +435,85 @@ blend_point_1/pos = -1.0
 blend_point_2/node = SubResource( 10 )
 blend_point_2/pos = 0.0
 
-[sub_resource type="AnimationNodeOneShot" id=7]
+[sub_resource type="AnimationNodeOneShot" id=12]
 
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "stand"
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "jump"
+
+[sub_resource type="AnimationNodeOneShot" id=7]
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "stand"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "walk_right"
+animation = "stand"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
+animation = "walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "walk_left"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=16]
-blend_point_0/node = SubResource( 13 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=17]
+blend_point_0/node = SubResource( 14 )
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 14 )
+blend_point_1/node = SubResource( 15 )
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 15 )
+blend_point_2/node = SubResource( 16 )
 blend_point_2/pos = -1.0
 
-[sub_resource type="AnimationNodeOneShot" id=20]
+[sub_resource type="AnimationNodeOneShot" id=18]
 
-[sub_resource type="AnimationNodeBlendTree" id=17]
-graph_offset = Vector2( -340.8, 10.2101 )
+[sub_resource type="AnimationNodeBlendTree" id=19]
+graph_offset = Vector2( -245.755, -102.047 )
 nodes/attack/node = SubResource( 11 )
-nodes/attack/position = Vector2( 0, 140 )
-nodes/attack_shot/node = SubResource( 7 )
+nodes/attack/position = Vector2( -20, 140 )
+nodes/attack_shot/node = SubResource( 12 )
 nodes/attack_shot/position = Vector2( 220, 20 )
-nodes/output/position = Vector2( 640, 60 )
-nodes/stand/node = SubResource( 12 )
-nodes/stand/position = Vector2( 0, 20 )
-nodes/walk/node = SubResource( 16 )
-nodes/walk/position = Vector2( 220, 220 )
-nodes/walk_shot/node = SubResource( 20 )
-nodes/walk_shot/position = Vector2( 440, 60 )
-node_connections = [ "output", 0, "walk_shot", "attack_shot", 0, "stand", "attack_shot", 1, "attack", "walk_shot", 0, "attack_shot", "walk_shot", 1, "walk" ]
+nodes/jump/node = SubResource( 23 )
+nodes/jump/position = Vector2( 440, 300 )
+nodes/jump_shot/node = SubResource( 7 )
+nodes/jump_shot/position = Vector2( 620, 160 )
+nodes/output/position = Vector2( 820, 160 )
+nodes/stand/node = SubResource( 13 )
+nodes/stand/position = Vector2( 0, -20 )
+nodes/walk/node = SubResource( 17 )
+nodes/walk/position = Vector2( 200, 240 )
+nodes/walk_shot/node = SubResource( 18 )
+nodes/walk_shot/position = Vector2( 420, 80 )
+node_connections = [ "output", 0, "jump_shot", "walk_shot", 0, "attack_shot", "walk_shot", 1, "walk", "attack_shot", 0, "stand", "attack_shot", 1, "attack", "jump_shot", 0, "walk_shot", "jump_shot", 1, "jump" ]
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 30, 56 )
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 20, 56 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 15, 20 )
 
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.160784, 0.643137, 0.0745098, 1 )
+
 [node name="Fighter" type="KinematicBody2D"]
+collision_layer = 2147483650
 script = ExtResource( 2 )
+
+[node name="Camera" type="Camera2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack_left = SubResource( 1 )
 anims/attack_right = SubResource( 2 )
+anims/jump = SubResource( 22 )
 anims/stand = SubResource( 3 )
-anims/walk_left = SubResource( 4 )
-anims/walk_right = SubResource( 5 )
+anims/walk_left = SubResource( 5 )
+anims/walk_right = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 17 )
+tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("Skeleton/Hip:rotation_degrees")
 parameters/attack/blend_position = 0.0
 parameters/attack_shot/active = false
+parameters/jump_shot/active = false
 parameters/walk/blend_position = 0.0
 parameters/walk_shot/active = false
 
@@ -455,7 +523,7 @@ max_distance = 512.0
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -56 )
-shape = SubResource( 18 )
+shape = SubResource( 20 )
 
 [node name="Bodyparts" type="Node2D" parent="."]
 position = Vector2( -19, -112 )
@@ -630,16 +698,21 @@ rotation = 1.5708
 rest = Transform2D( -3.61999e-06, 1, -1, -3.61999e-06, 0, 22 )
 default_length = 6.0
 
-[node name="HitLeft" type="Area2D" parent="."]
-position = Vector2( -45, -60 )
+[node name="HitArea" type="Area2D" parent="."]
+position = Vector2( 0, -60 )
 monitoring = false
+collision_mask = 2
 
-[node name="Shape" type="CollisionShape2D" parent="HitLeft"]
-shape = SubResource( 19 )
+[node name="Shape" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource( 21 )
 
-[node name="HitRight" type="Area2D" parent="."]
-position = Vector2( 45, -60 )
-monitoring = false
-
-[node name="Shape" type="CollisionShape2D" parent="HitRight"]
-shape = SubResource( 19 )
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = -30.0
+margin_top = -140.0
+margin_right = 30.0
+margin_bottom = -126.0
+custom_styles/fg = SubResource( 24 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

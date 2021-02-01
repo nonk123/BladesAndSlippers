@@ -47,6 +47,7 @@ position = Vector2( 0, 450 )
 
 [node name="Left" parent="Gladiators" instance=ExtResource( 1 )]
 position = Vector2( 100, 0 )
+player_controlled = true
 
 [node name="Right" parent="Gladiators" instance=ExtResource( 1 )]
 position = Vector2( 912, 0 )
